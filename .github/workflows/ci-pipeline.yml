@@ -15,6 +15,5 @@ jobs:
           cache: gradle
       - name: Compile and test application
         run: |
-          cd catalog-service/
           chmod +x gradlew
           ./gradlew build
