@@ -15,7 +15,7 @@ class CatalogServiceApplicationTests {
 
 	@Test
 	void whenPostRequestThenBookCreated() {
-		var expectedBook = new Book("1234567890", "Title", "Author", 9.99);
+		var expectedBook = Book.build("1234567890", "Title", "Author", 9.99, "Polarsophia");
 		webTestClient.post().uri("/books").bodyValue(expectedBook).exchange().expectStatus().isCreated().expectBody(Book.class).value(actualBook -> {
 			assertThat(actualBook).isNotNull();
 			assertThat(actualBook.isbn()).isEqualTo(expectedBook.isbn());
