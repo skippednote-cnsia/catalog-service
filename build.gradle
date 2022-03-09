@@ -24,6 +24,19 @@ configurations {
 	}
 }
 
+bootBuildImage {
+	imageName = "skippednote/${project.name}:${project.version}"
+	environment = ["BP_JVM_VERSION": "17.*"]
+
+	docker {
+		publishRegistry {
+			username = project.findProperty("registryUsername")
+			password = project.findProperty("registryToken")
+			url = project.findProperty("registryUrl")
+		}
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'

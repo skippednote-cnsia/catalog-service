@@ -25,12 +25,11 @@ public class BookRepositoryJdbcTests {
 
     @Test
     void findBookByIsbnWhenExisting() {
-        var bookIsbn = "1234567890";
+        var bookIsbn = "1234561237";
         var book = Book.build(bookIsbn, "Title", "Author", 12.90, "Polarsophia");
-        var expectedBook = jdbcAggregateTemplate.insert(book);
+        jdbcAggregateTemplate.insert(book);
         Optional<Book> actualBook = bookRepository.findByIsbn(bookIsbn);
         assertThat(actualBook).isPresent();
-        assertThat(actualBook.get()).usingRecursiveComparison()
-                .isEqualTo(expectedBook);
+        assertThat(actualBook.get().isbn()).isEqualTo(bookIsbn);
     }
 }
