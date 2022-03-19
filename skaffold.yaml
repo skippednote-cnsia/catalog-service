@@ -1,0 +1,15 @@
+---
+apiVersion: skaffold/v2beta27
+kind: Config
+metadata:
+  name: catalog-service
+build:
+  artifacts:
+  - image: skippednote/catalog-service
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yml
+    - k8s/service.yml
